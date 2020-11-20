@@ -3,6 +3,7 @@ package com.lib.filebrowserlib
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.lib.filebrowserlibrary.data.core.ConstantsLib
 import com.lib.filebrowserlibrary.data.enums.TypeFileBrowser
 import com.lib.filebrowserlibrary.data.model.FileBrowserBundle
 import com.lib.filebrowserlibrary.ui.browser.MainBrowserActivity
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         val fileBrowserBundle = FileBrowserBundle()
         fileBrowserBundle.setIsSingle(false)
         fileBrowserBundle.setTypeFile(TypeFileBrowser.IMAGE)
-        bundle.putString("fileBrowser",CommonUtils.toJson(fileBrowserBundle))
+        bundle.putString(ConstantsLib.fileBrowser,CommonUtils.toJson(fileBrowserBundle))
         val intent = Intent(this , MainBrowserActivity::class.java)
         intent.putExtras(bundle)
         startActivity(intent)

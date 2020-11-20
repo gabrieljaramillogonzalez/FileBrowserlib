@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.gabriel.jg.library.ui.picker.ImagePickerAlbumsActivity;
 import com.lib.filebrowserlib.utils.CommonUtils;
+import com.lib.filebrowserlibrary.data.core.ConstantsLib;
 import com.lib.filebrowserlibrary.data.enums.TypeFileBrowser;
 import com.lib.filebrowserlibrary.data.model.FileBrowserBundle;
 import com.lib.filebrowserlibrary.ui.browser.MainBrowserActivity;
@@ -33,7 +34,7 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1){
             if (data!=null&&data.getExtras()!=null)
-                data.getExtras().getString("FilePathKey");
+                data.getExtras().getString(ConstantsLib.Companion.getFilePathKey());
         }
     }
 
@@ -44,7 +45,7 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
         FileBrowserBundle fileBrowserBundle = new FileBrowserBundle();
         fileBrowserBundle.setIsSingle(true);
         fileBrowserBundle.setTypeFile(TypeFileBrowser.IMAGE);
-        bundle.putString("fileBrowser", CommonUtils.toJson(fileBrowserBundle));
+        bundle.putString(ConstantsLib.Companion.getFileBrowser(), CommonUtils.toJson(fileBrowserBundle));
         Intent intent = new Intent(this , MainBrowserActivity.class);
         intent.putExtras(bundle);
         startActivityForResult(intent,1);
