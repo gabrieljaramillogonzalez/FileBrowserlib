@@ -3,6 +3,7 @@ package com.lib.filebrowserlibrary.data.model
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.net.Uri
+import com.lib.filebrowserlibrary.R
 import com.lib.filebrowserlibrary.data.enums.TypeFileBrowser
 import java.io.File
 import java.io.FileNotFoundException
@@ -93,5 +94,20 @@ class FileBrowserBundle {
             else -> result = false
         }
         return result
+    }
+
+    fun typeString(context: Context):String{
+        var type = String()
+        when(typeFile){
+            TypeFileBrowser.ALL -> type = context.getString(R.string.empty_file_list)
+            TypeFileBrowser.IMAGE -> type = context.getString(R.string.empty_images_list)
+            TypeFileBrowser.JPEG -> type = context.getString(R.string.empty_JPEG_list)
+            TypeFileBrowser.JPG -> type = context.getString(R.string.empty_JPG_list)
+            TypeFileBrowser.PNG -> type = context.getString(R.string.empty_PNG_list)
+            TypeFileBrowser.PDF -> type = context.getString(R.string.empty_documents_list)
+            TypeFileBrowser.SPHERICAL -> type = context.getString(R.string.empty_SPHERICAL_list)
+            else -> context.getString(R.string.empty_images_list)
+        }
+        return type
     }
 }

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="empty_images_list">No tiene imagenes</string>
+    <string name="empty_file_list">No tienes archivos</string>
+    <string name="empty_images_list">No tienes imagenes</string>
+    <string name="empty_documents_list">No tienes documentos</string>
+    <string name="empty_JPEG_list">No tienes archivos jpeg</string>
+    <string name="empty_JPG_list">No tienes archivos jpg</string>
+    <string name="empty_PNG_list">No tienes archivos png</string>
+    <string name="empty_SPHERICAL_list">No tienes imagenes esfericas</string>
     <string name="some_error">Ocurrió un error y ya lo hemos notificado a Soporte Técnico</string>
     <string name="file_browser">Explorador de archivos</string>
     <string name="confirm">Confirmar</string>

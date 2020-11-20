@@ -81,6 +81,9 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
         viewModel.isShowEmpty.observe(this, Observer<Boolean>{
             LibFileBrowser_tvEmptyList.visibility = if (it) View.VISIBLE else View.GONE
         })
+        viewModel.typeFile.observe(this, Observer <String>{
+            LibFileBrowser_tvEmptyList.text = it
+        })
         viewModel.isBackDirectory.observe(this, Observer<Boolean>{
             LibFileBrowser_ivBack.visibility = if (it) View.VISIBLE else View.INVISIBLE
         })

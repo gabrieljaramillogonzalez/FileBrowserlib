@@ -20,6 +20,7 @@ class MainBrowserVieModel : BaseViewModel(){
     val isShowEmpty = MutableLiveData<Boolean>()
     val isBackDirectory = MutableLiveData<Boolean>()
     val directionalityRoot = MutableLiveData<String>()
+    val typeFile = MutableLiveData<String>()
     private var fileBrowser = FileBrowserBundle()
     private var listOfFileList = ArrayList<ArrayList<File>>()
     private var filesCorrectType = ArrayList<File>()
@@ -46,6 +47,7 @@ class MainBrowserVieModel : BaseViewModel(){
             setFilesCorrectAlbum()
             listFile.postValue(listOfFileList[listOfFileList.size-1])
             isShowEmpty.value = listOfFileList[listOfFileList.size-1].size==0
+            typeFile.value = fileBrowser.typeString(getMContext())
         }
         setLoading(false)
     }
