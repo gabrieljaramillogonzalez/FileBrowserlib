@@ -44,11 +44,11 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
     class FileViewHolder (itemView : View ,var listener : FileListener) : RecyclerView.ViewHolder(itemView),
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
-        private val ivPdf = itemView.findViewById<ImageView>(R.id.ItemFileBrowser_ivFile)
-        private val tvNamePdf = itemView.findViewById<TextView>(R.id.ItemFileBrowser_tvNameFile)
-        private val tvSizePdf = itemView.findViewById<TextView>(R.id.ItemFileBrowser_tvSizeFile)
-        private val cbImage = itemView.findViewById<CheckBox>(R.id.ItemFileBrowser_cbImage)
-        private val tvFileInfo = itemView.findViewById<RelativeLayout>(R.id.ItemFileBrowser_tvFileInfo)
+        private val ivPdf = itemView.findViewById<ImageView>(R.id.LibItemFileBrowser_ivFile)
+        private val tvNamePdf = itemView.findViewById<TextView>(R.id.LibItemFileBrowser_tvNameFile)
+        private val tvSizePdf = itemView.findViewById<TextView>(R.id.LibItemFileBrowser_tvSizeFile)
+        private val cbImage = itemView.findViewById<CheckBox>(R.id.LibItemFileBrowser_cbImage)
+        private val tvFileInfo = itemView.findViewById<RelativeLayout>(R.id.LibItemFileBrowser_tvFileInfo)
         private var isFolder : Boolean = false
         private lateinit var fileAux : File
         private var isCheck = false
@@ -89,7 +89,7 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
 
         override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
             when(buttonView?.id){
-                R.id.ItemFileBrowser_cbImage->{
+                R.id.LibItemFileBrowser_cbImage->{
                     if (isChecked){
                         if (!this.isCheck)
                             listener.setListItem(fileAux)
@@ -102,7 +102,7 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
 
         override fun onClick(v: View?) {
             when(v?.id){
-                R.id.ItemFileBrowser_tvFileInfo->{
+                R.id.LibItemFileBrowser_tvFileInfo->{
                     if(isFolder){
                         listener.openFolder(fileAux)
                     }else if (listener.isSingleImage()){

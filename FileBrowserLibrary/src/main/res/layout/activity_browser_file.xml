@@ -17,11 +17,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <RelativeLayout
-                android:id="@+id/FileBrowser_rlDirectory"
+                android:id="@+id/LibFileBrowser_rlDirectory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/FileBrowser_ivBack"
+                    android:id="@+id/LibFileBrowser_ivBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"
@@ -31,17 +31,17 @@
                     android:src="@drawable/ic_arrow_back_24dp"/>
 
                 <TextView
-                    android:id="@+id/FileBrowser_tvSourceDirectory"
+                    android:id="@+id/LibFileBrowser_tvSourceDirectory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:layout_toEndOf="@+id/FileBrowser_ivBack"
+                    android:layout_toEndOf="@+id/LibFileBrowser_ivBack"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                     tools:text="Ruta" />
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/FileBrowser_rvItems"
+                android:id="@+id/LibFileBrowser_rvItems"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -53,7 +53,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/FileBrowser_tvEmptyList"
+                    android:id="@+id/LibFileBrowser_tvEmptyList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/empty_images_list"
@@ -66,7 +66,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
         <RelativeLayout
-            android:id="@+id/FileBrowser_rvProgress"
+            android:id="@+id/LibFileBrowser_rvProgress"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <View

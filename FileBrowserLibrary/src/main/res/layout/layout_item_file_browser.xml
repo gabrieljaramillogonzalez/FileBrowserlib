@@ -13,24 +13,24 @@
         android:layout_margin="8dp">
 
         <LinearLayout
-            android:id="@+id/ItemFileBrowser_llFile"
+            android:id="@+id/LibItemFileBrowser_llFile"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="?selectableItemBackground"
             android:padding="4dp">
 
             <ImageView
-                android:id="@+id/ItemFileBrowser_ivFile"
+                android:id="@+id/LibItemFileBrowser_ivFile"
                 android:layout_width="68dp"
                 android:layout_height="68dp"
                 tools:srcCompat="@drawable/ic_pdf" />
             <RelativeLayout
-                android:id="@+id/ItemFileBrowser_tvFileInfo"
+                android:id="@+id/LibItemFileBrowser_tvFileInfo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
                 <TextView
-                    android:id="@+id/ItemFileBrowser_tvNameFile"
+                    android:id="@+id/LibItemFileBrowser_tvNameFile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -39,17 +39,17 @@
                     tools:text="Nombre del File" />
 
                 <TextView
-                    android:id="@+id/ItemFileBrowser_tvSizeFile"
+                    android:id="@+id/LibItemFileBrowser_tvSizeFile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ItemFileBrowser_tvNameFile"
+                    android:layout_below="@+id/LibItemFileBrowser_tvNameFile"
                     android:layout_marginStart="8dp"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                     tools:text="Peso del File" />
 
             </RelativeLayout>
             <CheckBox
-                android:id="@+id/ItemFileBrowser_cbImage"
+                android:id="@+id/LibItemFileBrowser_cbImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"

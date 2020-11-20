@@ -44,7 +44,7 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
         val binding = DataBindingUtil.setContentView<ActivityBrowserFileBinding>(this,R.layout.activity_browser_file)
         viewModel = ViewModelProviders.of(this).get(MainBrowserVieModel::class.java)
         binding.viewModel = viewModel
-        binding.FileBrowserIvBack.setOnClickListener { viewModel.back() }
+        binding.LibFileBrowserIvBack.setOnClickListener { viewModel.back() }
         binding.executePendingBindings()
         checkReadPermission()
     }
@@ -71,7 +71,7 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
     }
 
     override fun setUp() {
-        FileBrowser_rvItems.apply {
+        LibFileBrowser_rvItems.apply {
             layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
             adapter = fileAdapter
         }
@@ -79,16 +79,16 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
                 list->fileAdapter.setList(list)
         })
         viewModel.isShowEmpty.observe(this, Observer<Boolean>{
-            FileBrowser_tvEmptyList.visibility = if (it) View.VISIBLE else View.GONE
+            LibFileBrowser_tvEmptyList.visibility = if (it) View.VISIBLE else View.GONE
         })
         viewModel.isBackDirectory.observe(this, Observer<Boolean>{
-            FileBrowser_ivBack.visibility = if (it) View.VISIBLE else View.INVISIBLE
+            LibFileBrowser_ivBack.visibility = if (it) View.VISIBLE else View.INVISIBLE
         })
         viewModel.isLoading.observe(this, Observer<Boolean>{
-            FileBrowser_rvProgress.visibility = if (it) View.VISIBLE else View.GONE
+            LibFileBrowser_rvProgress.visibility = if (it) View.VISIBLE else View.GONE
         })
         viewModel.directionalityRoot.observe(this, Observer<String> {
-            FileBrowser_tvSourceDirectory.text = it
+            LibFileBrowser_tvSourceDirectory.text = it
         })
     }
 
