@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+    </style>
+
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/quicksand</item>
+    </style>
+
+    <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
+        <item name="android:fontFamily">@font/quicksand</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">@font/quicksand</item>
+    </style>
+
+    <style name="Apptheme.Invert" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:indeterminateTint">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomProgressBar.Invert" parent="AppTheme">
+        <item name="android:indeterminateTint">@android:color/white</item>
+    </style>
+
+    <style name="PrimaryFlatButton" parent="AppTheme">
+        <item name="android:buttonStyle"> @style/Widget.AppCompat.Button.Borderless.Colored</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+    </style>
+
+</resources>

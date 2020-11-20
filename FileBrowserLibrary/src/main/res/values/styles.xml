@@ -1,0 +1,98 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="TitleTextAppeareance" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/secondaryColor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FloatingActionMenuStyle">
+        <item name="menu_shadowColor">@color/fab_shadow_button</item>
+        <item name="menu_colorNormal">@color/secondaryColor</item>
+        <item name="menu_colorPressed">@color/secondaryColor</item>
+        <item name="menu_colorRipple">@color/secondaryDarkColor</item>
+        <item name="menu_backgroundColor">@color/hard_transparent_black</item>
+        <item name="menu_labels_colorNormal">@color/transparent</item>
+        <item name="menu_labels_colorPressed">@color/transparent</item>
+        <item name="menu_labels_colorRipple">@color/transparent</item>
+        <item name="menu_labels_showShadow">false</item>
+    </style>
+
+    <style name="FloatingActionButtonStyle">
+        <item name="fab_shadowColor">@color/fab_shadow_button</item>
+        <item name="fab_colorNormal">@color/secondaryColor</item>
+        <item name="fab_colorPressed">@color/secondaryColor</item>
+        <item name="fab_colorRipple">@color/secondaryDarkColor</item>
+    </style>
+
+    <style name="AppTheme.WhiteRipple">
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="android:background">?selectableItemBackground</item>
+    </style>
+
+    <style name="AppTheme2" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorError">@color/errorTextColor</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">@color/text_color</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/text_color</item>
+        <item name="textInputStyle">@style/CustomTextInputLayoutStyle</item>
+    </style>
+
+    <style name="AppTheme2.Dark" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorError">@color/errorTextColor</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">#FFFFFF</item>
+        <item name="textInputStyle">@style/CustomTextInputLayoutStyle</item>
+    </style>
+
+    <style name="AppTheme2.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+    </style>
+
+    <style name="CustomTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/secondaryColor</item>
+        <item name="hintTextColor">@color/secondaryColor</item>
+    </style>
+
+    <style name="CustomTextInputLayoutStyleOnLogIn" parent="CustomTextInputLayoutStyle">
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorPrimary">@color/white</item>
+    </style>
+
+    <color name="text_color">#212121</color>
+
+    <style name="CustomAlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="buttonBarPositiveButtonStyle">@style/CustomButtonDialog</item>
+        <item name="buttonBarNegativeButtonStyle">@style/CustomButtonDialog</item>
+    </style>
+    <style name="CustomButtonDialog" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>
