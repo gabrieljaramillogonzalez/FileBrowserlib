@@ -15,7 +15,7 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
     var listFile = ArrayList<File>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FileViewHolder {
-        return FileViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_item_file_browser,parent,false),listener)
+        return FileViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_lib_item_file_browser,parent,false),listener)
     }
 
     override fun getItemCount() = listFile.size

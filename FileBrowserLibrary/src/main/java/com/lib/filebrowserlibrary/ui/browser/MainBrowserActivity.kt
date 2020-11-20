@@ -11,12 +11,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lib.filebrowserlibrary.R
 import com.lib.filebrowserlibrary.data.core.ConstantsLib
-import com.lib.filebrowserlibrary.databinding.ActivityBrowserFileBinding
+import com.lib.filebrowserlibrary.databinding.ActivityLibBrowserFileBinding
 import com.lib.filebrowserlibrary.ui.base.BaseActivity
 import com.lib.filebrowserlibrary.utils.CheckPermissionUtil
 import com.lib.filebrowserlibrary.utils.CommonUtils
 import com.lib.filebrowserlibrary.utils.PermissionUtil
-import kotlinx.android.synthetic.main.activity_browser_file.*
+import kotlinx.android.synthetic.main.activity_lib_browser_file.*
 import java.io.File
 
 class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.FileListener{
@@ -41,7 +41,7 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityBrowserFileBinding>(this,R.layout.activity_browser_file)
+        val binding = DataBindingUtil.setContentView<ActivityLibBrowserFileBinding>(this,R.layout.activity_lib_browser_file)
         viewModel = ViewModelProviders.of(this).get(MainBrowserVieModel::class.java)
         binding.viewModel = viewModel
         binding.LibFileBrowserIvBack.setOnClickListener { viewModel.back() }
