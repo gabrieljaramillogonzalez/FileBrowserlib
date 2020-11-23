@@ -46,6 +46,7 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
         binding.viewModel = viewModel
         binding.LibFileBrowserIvBack.setOnClickListener { viewModel.back() }
         binding.executePendingBindings()
+        activeHomeBackButton()
         checkReadPermission()
     }
 
