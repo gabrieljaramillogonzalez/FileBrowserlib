@@ -52,11 +52,13 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
         private var isFolder : Boolean = false
         private lateinit var fileAux : File
         private var isCheck = false
+        private var ready = false
 
         fun bindViewHolder(file:File){
             tvFileInfo.setOnClickListener(this)
             tvSizePdf.visibility = View.GONE
             if (!listener.isSingleImage()) {
+                ready = false
                 cbImage.setOnCheckedChangeListener(this)
                 isCheck = listener.isContentItem(file)
                 cbImage.isChecked = isCheck
@@ -93,8 +95,12 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
                     if (isChecked){
                         if (!this.isCheck)
                             listener.setListItem(fileAux)
+                        ready=true
                     }else{
-                        listener.removeListItem(fileAux)
+                        if(ready)
+                            listener.removeListItem(fileAux)
+                        else
+                            ready=true
                     }
                 }
             }

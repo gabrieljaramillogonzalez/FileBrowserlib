@@ -43,7 +43,7 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         Bundle bundle = new Bundle();
         FileBrowserBundle fileBrowserBundle = new FileBrowserBundle();
-        fileBrowserBundle.setIsSingle(true);
+        fileBrowserBundle.setIsSingle(false);
         fileBrowserBundle.setTypeFile(TypeFileBrowser.IMAGE);
         bundle.putString(ConstantsLib.Companion.getFileBrowser(), CommonUtils.toJson(fileBrowserBundle));
         Intent intent = new Intent(this , MainBrowserActivity.class);
