@@ -11,8 +11,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
         android:onClick="onClick"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/boton"
         android:text="Activida"/>
     <TextView
