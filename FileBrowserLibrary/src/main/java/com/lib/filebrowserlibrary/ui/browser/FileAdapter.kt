@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lib.filebrowserlibrary.R
 import com.lib.filebrowserlibrary.utils.CommonUtils
+import com.lib.filebrowserlibrary.utils.ScreenUtils
 import java.io.File
 
 open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<FileAdapter.FileViewHolder>() {
@@ -68,6 +69,7 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
             if(file.name.toLowerCase().endsWith(".jpg") || file.name.toLowerCase().endsWith(".png") || file.name.toLowerCase().endsWith(".jpeg")){
                 Glide.with(ivPdf.context)
                     .load(file)
+                    .override(ScreenUtils.convertDpToPx(ivPdf.context,68).toInt())
                     .into(ivPdf)
                 tvSizePdf.visibility = View.VISIBLE
                 tvSizePdf.text = CommonUtils.sizeFile(file.length())
@@ -75,6 +77,7 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
             }else if (file.name.toLowerCase().endsWith(".pdf") ){
                 Glide.with(ivPdf.context)
                     .load(R.drawable.ic_pdf)
+                    .override(ScreenUtils.convertDpToPx(ivPdf.context,68).toInt())
                     .into(ivPdf)
                 tvSizePdf.visibility = View.VISIBLE
                 tvSizePdf.text = CommonUtils.sizeFile(file.length())
@@ -82,6 +85,7 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
             }else{
                 Glide.with(ivPdf.context)
                     .load(R.drawable.ic_folder_white)
+                    .override(ScreenUtils.convertDpToPx(ivPdf.context,68).toInt())
                     .into(ivPdf)
                 isFolder = true
                 cbImage.visibility = View.GONE
