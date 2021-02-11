@@ -42,7 +42,7 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
         notifyDataSetChanged()
     }
 
-    class FileViewHolder (itemView : View ,var listener : FileListener) : RecyclerView.ViewHolder(itemView),
+    inner class FileViewHolder (itemView : View ,var listener : FileListener) : RecyclerView.ViewHolder(itemView),
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
         private val ivPdf = itemView.findViewById<ImageView>(R.id.LibItemFileBrowser_ivFile)
@@ -51,7 +51,6 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
         private val cbImage = itemView.findViewById<CheckBox>(R.id.LibItemFileBrowser_cbImage)
         private val tvFileInfo = itemView.findViewById<RelativeLayout>(R.id.LibItemFileBrowser_tvFileInfo)
         private var isFolder : Boolean = false
-        private lateinit var fileAux : File
         private var isCheck = false
         private var ready = false
 
@@ -65,7 +64,7 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
                 cbImage.isChecked = isCheck
             }
             cbImage.visibility = if (listener.isSingleImage()) View.GONE else View.VISIBLE
-            fileAux = file
+
             if(file.name.toLowerCase().endsWith(".jpg") || file.name.toLowerCase().endsWith(".png") || file.name.toLowerCase().endsWith(".jpeg")){
                 Glide.with(ivPdf.context)
                     .load(file)
@@ -98,11 +97,11 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
                 R.id.LibItemFileBrowser_cbImage->{
                     if (isChecked){
                         if (!this.isCheck)
-                            listener.setListItem(fileAux)
+                            listener.setListItem(listFile[adapterPosition])
                         ready=true
                     }else{
                         if(ready)
-                            listener.removeListItem(fileAux)
+                            listener.removeListItem(listFile[adapterPosition])
                         else
                             ready=true
                     }
@@ -114,9 +113,9 @@ open class FileAdapter (var listener : FileListener) : RecyclerView.Adapter<File
             when(v?.id){
                 R.id.LibItemFileBrowser_tvFileInfo->{
                     if(isFolder){
-                        listener.openFolder(fileAux)
+                        listener.openFolder(listFile[adapterPosition])
                     }else if (listener.isSingleImage()){
-                        listener.addFileAlbums(fileAux)
+                        listener.addFileAlbums(listFile[adapterPosition])
                     }
                 }
             }
