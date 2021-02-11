@@ -5,10 +5,14 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.lib.filebrowserlibrary.data.core.ConstantsLib
 import com.lib.filebrowserlibrary.data.model.FileBrowserBundle
 import com.lib.filebrowserlibrary.ui.base.BaseViewModel
 import com.lib.filebrowserlibrary.utils.CommonUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 
 class MainBrowserVieModel : BaseViewModel(){
@@ -26,8 +30,6 @@ class MainBrowserVieModel : BaseViewModel(){
     private val filesCorrectAlbum= ArrayList<File>()
     private val listPath = ArrayList<String>()
     private val pathsFile = HashSet<File>()
-    private lateinit var fileSeekerAsyncTask: FileSeekerAsyncTask
-    private lateinit var initFileSeekerAsyncTask: InitFileSeekerAsyncTask
 
     override fun onAttach(bundle: Bundle,context: Context) {
         super.onAttach(bundle,context)
@@ -40,8 +42,46 @@ class MainBrowserVieModel : BaseViewModel(){
     }
 
     private fun refresh(){
-        initFileSeekerAsyncTask = InitFileSeekerAsyncTask()
-        initFileSeekerAsyncTask.execute(File(""))
+        viewModelScope.launch {
+            setLoading(true)
+            withContext(Dispatchers.IO){
+                methodRefreshScope()
+            }
+            setLoading(false)
+            updateView(false)
+        }
+    }
+
+    fun openFolder(file: File){
+        viewModelScope.launch {
+            setLoading(true)
+            withContext(Dispatchers.IO){
+                methodOpenFolderScope(file)
+            }
+            setLoading(false)
+            updateView(false)
+        }
+    }
+
+    private fun methodRefreshScope(){
+        getRootFile()
+        addFilesCorrectType(filesRoot)
+        setFilesCorrectAlbum()
+    }
+
+    private fun methodOpenFolderScope(file: File){
+        val arrayFile = file.listFiles()?.let { listOf<File>(*it) }?.let { ArrayList(it) }
+        var arrayList = ArrayList<File>()
+        if (arrayFile != null) {
+            for (file in arrayFile){
+                if(arrayFile.size>0)
+                    arrayList.add(file)
+                else if (fileBrowser.evaluateFileType(file,getMContext()))
+                    arrayList.add(file)
+            }
+        }
+        arrayList = setFilesCorrectAlbum(arrayList)
+        listOfFileList.add(arrayList)
     }
 
     private fun setFilesCorrectAlbum() {
@@ -78,11 +118,6 @@ class MainBrowserVieModel : BaseViewModel(){
             }
             this.filesRoot = filesAux.toTypedArray()
         }
-    }
-
-    fun openFolder(file: File){
-        fileSeekerAsyncTask = FileSeekerAsyncTask()
-        fileSeekerAsyncTask.execute(file)
     }
 
     private fun setFilesCorrectAlbum(arrayList: ArrayList<File>) :  ArrayList<File>{
@@ -136,57 +171,7 @@ class MainBrowserVieModel : BaseViewModel(){
         return fileBrowser.isSingle()
     }
 
-
-    inner class FileSeekerAsyncTask : AsyncTask<File?, Void?, java.util.ArrayList<File>?>() {
-        override fun onPreExecute() {
-            super.onPreExecute()
-            setLoading(true)
-        }
-
-        override fun doInBackground(vararg files: File?): java.util.ArrayList<File>? {
-            val arrayFile = files[0]?.listFiles()?.let { listOf<File>(*it) }?.let { ArrayList(it) }
-            var arrayList = ArrayList<File>()
-            if (arrayFile != null) {
-                for (file in arrayFile){
-                    if(arrayFile.size>0)
-                        arrayList.add(file)
-                    else if (fileBrowser.evaluateFileType(file,getMContext()))
-                        arrayList.add(file)
-                }
-            }
-            arrayList = setFilesCorrectAlbum(arrayList)
-            listOfFileList.add(arrayList)
-            return null
-        }
-
-        override fun onPostExecute(arrayLists: java.util.ArrayList<File>?) {
-            super.onPostExecute(arrayLists)
-            setLoading(false)
-            updateView(true)
-        }
-    }
-
-    inner class InitFileSeekerAsyncTask : AsyncTask<File?, Void?, java.util.ArrayList<File>?>() {
-        override fun onPreExecute() {
-            super.onPreExecute()
-            setLoading(true)
-        }
-
-        override fun doInBackground(vararg file: File?): java.util.ArrayList<File>? {
-            getRootFile()
-            addFilesCorrectType(filesRoot)
-            setFilesCorrectAlbum()
-            return null
-        }
-
-        override fun onPostExecute(arrayLists: java.util.ArrayList<File>?) {
-            super.onPostExecute(arrayLists)
-            setLoading(false)
-            updateView(false)
-        }
-    }
-
-    fun updateView(isBack : Boolean){
+    private fun updateView(isBack : Boolean){
         directionalityRoot.value = this.filesRoot[0].parent
         listFile.postValue(listOfFileList[listOfFileList.size-1])
         isShowEmpty.value = listOfFileList[listOfFileList.size-1].size==0
