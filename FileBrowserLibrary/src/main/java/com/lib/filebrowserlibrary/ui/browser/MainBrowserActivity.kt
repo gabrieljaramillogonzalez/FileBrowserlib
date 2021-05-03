@@ -1,6 +1,7 @@
 package com.lib.filebrowserlibrary.ui.browser
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -31,7 +32,7 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val bundle = Bundle()
         val listString = CommonUtils.toJson(viewModel.getListPath())
         bundle.putString(ConstantsLib.FilePathKey, listString)
@@ -51,14 +52,29 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
     }
 
     private fun checkReadPermission(){
-        CheckPermissionUtil.checkReadSd( this, object : PermissionUtil.Companion.ReqPermissionCallback {
-            override fun onResult(success: Boolean) {
-                if (success)
-                    configAttach()
-                else
-                    finish()
-            }
-        })
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            CheckPermissionUtil.checkWriteSdR(
+                this,
+                object : PermissionUtil.Companion.ReqPermissionCallback {
+                    override fun onResult(success: Boolean) {
+                        if (success)
+                            configAttach()
+                        else
+                            finish()
+                    }
+                })
+        }else {
+            CheckPermissionUtil.checkWriteSd(
+                this,
+                object : PermissionUtil.Companion.ReqPermissionCallback {
+                    override fun onResult(success: Boolean) {
+                        if (success)
+                            configAttach()
+                        else
+                            finish()
+                    }
+                })
+        }
     }
 
     override fun onRequestPermissionsResult( requestCode: Int, permissions: Array<String>, grantResults: IntArray ) {

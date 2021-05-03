@@ -2,6 +2,8 @@ package com.lib.filebrowserlibrary.utils
 
 import android.Manifest
 import android.app.Activity
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.lib.filebrowserlibrary.R
 
 class CheckPermissionUtil {
@@ -58,6 +60,20 @@ class CheckPermissionUtil {
                     READ_SD_REQ_CODE,
                     activity.getText(R.string.read_es_permission_description_message),
                     activity.getText(R.string.read_es_permission_go_settings_message),
+                    callback
+                )
+            }
+        }
+
+        @RequiresApi(Build.VERSION_CODES.R)
+        fun checkWriteSdR(activity: Activity, callback: PermissionUtil.Companion.ReqPermissionCallback?) {
+            if (callback != null) {
+                PermissionUtil.checkPermission(
+                    activity,
+                    Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+                    READ_SD_REQ_CODE,
+                    activity.getText(R.string.write_es_permission_description_message),
+                    activity.getText(R.string.write_es_permission_go_settings_message),
                     callback
                 )
             }
