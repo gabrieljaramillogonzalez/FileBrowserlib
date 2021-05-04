@@ -3,6 +3,7 @@ package com.lib.filebrowserlibrary.ui.browser
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -53,16 +54,12 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
 
     private fun checkReadPermission(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            CheckPermissionUtil.checkWriteSdR(
-                this,
-                object : PermissionUtil.Companion.ReqPermissionCallback {
-                    override fun onResult(success: Boolean) {
-                        if (success)
-                            configAttach()
-                        else
-                            finish()
-                    }
-                })
+            if(Environment.isExternalStorageManager()){
+                configAttach()
+            }else{
+                val intent = getMContext()?.let { PermissionUtil.requestPermission(it) }
+                startActivityForResult(intent,ConstantsLib.REQUEST_PERMISSION)
+            }
         }else {
             CheckPermissionUtil.checkWriteSd(
                 this,
@@ -80,6 +77,19 @@ class MainBrowserActivity : BaseActivity<MainBrowserVieModel>() , FileAdapter.Fi
     override fun onRequestPermissionsResult( requestCode: Int, permissions: Array<String>, grantResults: IntArray ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         PermissionUtil.onRequestPermissionResult( this, requestCode, permissions, grantResults )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == ConstantsLib.REQUEST_PERMISSION) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+                    configAttach()
+                } else {
+                    finish()
+                }
+            }
+        }
     }
 
     fun configAttach(){

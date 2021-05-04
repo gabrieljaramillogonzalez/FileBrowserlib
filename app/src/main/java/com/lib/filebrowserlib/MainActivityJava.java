@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.gabriel.jg.library.ui.picker.ImagePickerAlbumsActivity;
 import com.lib.filebrowserlib.utils.CommonUtils;
 import com.lib.filebrowserlibrary.data.core.ConstantsLib;
 import com.lib.filebrowserlibrary.data.enums.TypeFileBrowser;

@@ -1,6 +1,7 @@
 package com.lib.filebrowserlibrary.utils
 
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -110,6 +111,23 @@ class PermissionUtil {
                 targetReq.callback.onResult(hasPermission(targetReq.activity, targetReq.permission))
                 permissionReqList.remove(targetReq)
             }
+        }
+
+        fun requestPermission(context: Context): Intent{
+            var intent : Intent
+            try {
+                intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                intent.addCategory("android.intent.category.DEFAULT")
+                intent.data = Uri.parse(
+                    String.format(
+                        "package:%s",context.getPackageName()
+                    )
+                )
+            } catch (e: Exception) {
+                intent = Intent()
+                intent.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
+            }
+            return intent
         }
 
         interface ReqPermissionCallback {

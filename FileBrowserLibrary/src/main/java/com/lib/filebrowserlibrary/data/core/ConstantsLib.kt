@@ -6,5 +6,6 @@ class ConstantsLib {
         val FilePathKey = PACKAGE_NAME + "FilePathKey"
         val RC_GALLERY = 31
         val fileBrowser = "fileBrowser"
+        val REQUEST_PERMISSION = 1
     }
 }
